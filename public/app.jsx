@@ -1,5 +1,8 @@
+
+//presentational components = take props and renders it to the screen
 var GreeterMessage = React.createClass({
   render: function(){
+    //two props (name and message) passed from the parent
     var name = this.props.name;
     var message = this.props.message;
 
@@ -12,6 +15,7 @@ var GreeterMessage = React.createClass({
   }
 });
 
+//presentational component - doesn't maintain it's own state. calls a function when form gets submitted.
 var GreeterForm = React.createClass({
   onFormSubmit: function(e){
     e.preventDefault();
@@ -36,6 +40,9 @@ var GreeterForm = React.createClass({
   }
 });
 
+
+//container component - maintains state for the application (name) when state gets updated, it'll update it's children (GreeterMessage) because it relies on the name state.
+// State can be changed, Props can't.
 var Greeter = React.createClass({
   getDefaultProps: function(){
     return  {
@@ -57,6 +64,7 @@ var Greeter = React.createClass({
     var name = this.state.name;
     var message = this.props.message;
 
+ //container components should only render children
     return (
       <div>
         <GreeterMessage name={name} message={message} />
